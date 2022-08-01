@@ -35,7 +35,8 @@
 </table>
 <br>
 <br>
-<br>
-<a th:href="@{/logout}">Выход</a>
+<form th:action="@{/logout}">
+    <input type="submit" value="Выход">
+</form>
 </body>
 </html>

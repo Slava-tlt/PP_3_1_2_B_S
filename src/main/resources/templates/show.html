@@ -31,23 +31,25 @@
     </table></td>
   </tr>
 </table>
-<br/>
-<hr/>
-<br/>
-<a th:href="@{/admin/{id}/update(id=${person.getId()})}">Изменить пользователя</a>
-<br/>
-<br/>
-<form th:method="DELETE" th:action="@{/admin/{id}(id=${person.getId()})}">
+<br>
+<br>
+<form th:action="@{/admin/{id}/update(id=${person.getId()})}">
+  <input type="submit" value="Изменить пользователя">
+</form>
+<br>
+<br>
+<form th:method="DELETE" th:action="@{/admin/{id}/delete(id=${person.getId()})}">
   <input type="submit" value="Удалить пользователя"/>
 </form>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<a href="/admin">Назад</a>
-<br/>
-<br/>
-<a href="/logout">Logout</a>
+<br>
+<br>
+<form th:action="@{/admin}">
+  <input type="submit" value="Назад">
+</form>
+<br>
+<br>
+<form th:action="@{/logout}">
+  <input type="submit" value="Выход">
+</form>
 </body>
 </html>

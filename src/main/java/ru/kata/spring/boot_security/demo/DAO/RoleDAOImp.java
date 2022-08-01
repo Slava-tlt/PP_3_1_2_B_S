@@ -20,9 +20,14 @@ public class RoleDAOImp implements RoleDAO{
     @Override
     public Set<Role> getAllRoles(List<Long> roles) {
 
-        TypedQuery<Role> query = em.createQuery("select r from Role r where r.id=:role", Role.class);
+        TypedQuery<Role> query = em.createQuery("select r from Role r where r.id in :role", Role.class);
         query.setParameter("role", roles);
 
         return new HashSet<>(query.getResultList());
+    }
+
+    @Override
+    public void addRole(Set<Role> roles) {
+        em.persist(roles);
     }
 }

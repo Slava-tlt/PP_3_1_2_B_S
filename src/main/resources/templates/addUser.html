@@ -24,17 +24,25 @@
     <input type="text" th:field="*{password}" id="password"/>
     <br>
     <br>
-    <label for="rs">admin</label>
-    <input type="checkbox" th:name="role" th:value="${adminRoles.getAuthority()}" id="rs">
-    <label for="rs1">user</label>
-    <input type="checkbox" th:name="role"  th:value="${userRoles.getAuthority()}" id="rs1">
+    <label for="roles"><b>Role</b></label>
+    <select multiple class="form-control form-control-sm"
+            id="roles" name="listRoles" size="2" required>
+        <option selected="selected" value="2">USER</option>
+        <option value="1">ADMIN</option>
+    </select>
     <br>
     <br>
     <input type="submit" value="Сохранить"/>
 </form>
 <br>
 <br>
+<form th:action="@{/admin}">
+    <input type="submit" value="Назад">
+</form>
 <br>
-<a th:href="@{/logout}">Выход</a>
+<br>
+<form th:action="@{/logout}">
+    <input type="submit" value="Выход">
+</form>
 </body>
 </html>

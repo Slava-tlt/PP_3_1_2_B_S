@@ -2,7 +2,6 @@ package ru.kata.spring.boot_security.demo.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
@@ -37,11 +36,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String name, String surname, Byte age, String password) {
+    public User(String name, String surname, Byte age, String password, Set<Role> roles) {
         this.name = name;
         this.surname = surname;
         this.age = age;
         this.password = password;
+        this.roles = roles;
     }
 
     public Long getId() {
