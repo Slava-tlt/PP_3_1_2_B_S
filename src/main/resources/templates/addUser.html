@@ -7,21 +7,34 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{/users}" th:object="${user}">
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
     <label for="Name">Name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <br>
     <br>
     <label for="Surname">Surname: </label>
-    <input type="text" th:field="*{surName}" id="surname"/>
+    <input type="text" th:field="*{surname}" id="surname"/>
     <br>
     <br>
     <label for="Age">Age: </label>
     <input type="text" th:field="*{age}" id="age"/>
     <br>
     <br>
-    <input type="submit" value="Ok"/>
+    <label for="Password">Password: </label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br>
+    <br>
+    <label for="rs">admin</label>
+    <input type="checkbox" th:name="role" th:value="${adminRoles.getAuthority()}" id="rs">
+    <label for="rs1">user</label>
+    <input type="checkbox" th:name="role"  th:value="${userRoles.getAuthority()}" id="rs1">
+    <br>
+    <br>
+    <input type="submit" value="Сохранить"/>
 </form>
-
+<br>
+<br>
+<br>
+<a th:href="@{/logout}">Выход</a>
 </body>
 </html>

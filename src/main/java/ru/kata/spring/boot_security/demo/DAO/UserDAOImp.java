@@ -34,12 +34,19 @@ public class UserDAOImp implements UserDAO {
     public void update(Long id, User user) {
 
         getById(id).setName(user.getName());
-        getById(id).setSurName(user.getSurName());
+        getById(id).setSurname(user.getSurname());
         getById(id).setAge(user.getAge());
     }
 
     @Override
     public void delete(Long id) {
         em.remove(getById(id));
+    }
+
+    @Override
+    public User getUserName(String name) {
+        return (User) em.createQuery("select u from User u where u.name = :name")
+                .setParameter("name", name)
+                .getSingleResult();
     }
 }

@@ -19,4 +19,7 @@ public interface UserDAO {
     public void update(Long id, User user);
 
     public void delete(Long id);
+
+    public User getUserName(String name);
+
 }

@@ -16,11 +16,11 @@ public class User implements UserDetails {
     @Column()
     private Long id;
 
-    @Column()
+    @Column(unique = true)
     private String name;
 
     @Column(name = "sur_name")
-    private String surName;
+    private String surname;
 
     @Column()
     private Byte age;
@@ -28,18 +28,18 @@ public class User implements UserDetails {
     @Column()
     private String password;
 
-    @Transient
-    private String passwordConfirm;
-
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
     public User() {
     }
 
-    public User(String name, String surName, Byte age, String password) {
+    public User(String name, String surname, Byte age, String password) {
         this.name = name;
-        this.surName = surName;
+        this.surname = surname;
         this.age = age;
         this.password = password;
     }
@@ -60,12 +60,12 @@ public class User implements UserDetails {
         this.name = name;
     }
 
-    public String getSurName() {
-        return surName;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setSurName(String surName) {
-        this.surName = surName;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public Byte getAge() {
@@ -78,7 +78,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return roles;
+        return getRoles();
     }
 
     public String getPassword() {
@@ -87,7 +87,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return getName();
     }
 
     @Override
@@ -112,14 +112,6 @@ public class User implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
     }
 
     public Set<Role> getRoles() {

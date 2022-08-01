@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>table th, table td {
+        padding: 5px;
+    }</style>
+</head>
+<body>
+<h1>All Users</h1>
+<table border="1">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Optional</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${people}">
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+<!--        <td th:text="${user.getAge}"></td>-->
+<!--        <td th:each="role : ${people}"-->
+<!--            th:text="${role.getName()}"></td>-->
+
+        <td><a th:href="@{/admin/{id}(id=${user.getId()})}">Страница пользователя</a></td>
+<!--            <form th:method="DELETE" th:action="@{/admin/{id}/delete(id=${user.getId()})}">-->
+<!--                <input type="submit" value="Удалить">-->
+<!--            </form>-->
+<!--        </td>-->
+<!--    </tr>-->
+    </tbody>
+</table>
+<br>
+<form th:action="@{/admin/addUser}">
+    <input type="submit" value="New user">
+</form>
+<br>
+<br>
+<a th:href="@{/logout}">Выход</a>
+</body>
+</html>
